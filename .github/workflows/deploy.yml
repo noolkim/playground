@@ -30,6 +30,9 @@ jobs:
                         git pull origin master
                       fi
 
-                      sudo systemctl restart nginx
+                      yarn install
+                      yarn build
+
+                      pm2 reload nextjs || pm2 start yarn --name "nextjs" -- start
 
                       echo "Deployment successfully finished!"
