@@ -18,12 +18,12 @@ const airtableApi = createServerApi(
 // GET 요청 - 레코드 조회
 export async function GET(request: NextRequest) {
     try {
-        // console.log(
-        //     "Airtable GET request",
-        //     AIRTABLE_BASE_ID,
-        //     AIRTABLE_TABLE_NAME,
-        //     AIRTABLE_API_KEY
-        // );
+        console.log(
+            "Airtable GET request",
+            AIRTABLE_BASE_ID,
+            AIRTABLE_TABLE_NAME,
+            AIRTABLE_API_KEY
+        );
         const searchParams = request.nextUrl.searchParams;
         const recordId = searchParams.get("recordId");
         const maxRecords = searchParams.get("maxRecords") || "10";
