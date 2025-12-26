@@ -1,0 +1,222 @@
+// @tailwind utilities;
+.root__container.root__container--videoBackground {
+    .mainScreenContainer {
+        .mainScreenContainer__container {
+            > div {
+            }
+            .mainScreenContainer__section--video {
+                position: absolute;
+                top: 0;
+                height: 100vh;
+                width: 100vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                video {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100% !important;
+                    object-fit: cover;
+                    // z-index: -1;
+                }
+            }
+            .mainScreenContainer__section--content {
+                height: 100vh;
+                width: 100vw;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                .slogan__container {
+                    font-size: 70px;
+                    transition: font-size 0.3s;
+                    font-weight: 900;
+                    opacity: 1;
+                    text-align: center;
+                    position: relative;
+                    top: -10%;
+                    white-space: nowrap;
+                    > div {
+                        overflow: hidden;
+                        animation-timing-function: linear;
+                        animation-fill-mode: forwards;
+                        clip-path: inset(0 0 0 100%);
+                    }
+                    .slogan__section--text {
+                        &.slogan__section--text {
+                            animation-name: rightToLeftWidth, blackToWhiteColor;
+                            animation-duration: 0.43s, 1s;
+                            animation-delay: 3.7s, 5.5s;
+                        }
+                    }
+                    .slogan__section--logo {
+                        animation-name: rightToLeftWidth, blackToWhiteColor,
+                            whiteToGreenColor;
+                        animation-duration: 0.43s, 1s, 1.5s;
+                        animation-delay: 3.7s, 5.5s, 7s;
+                    }
+                }
+            }
+        }
+    }
+
+    @keyframes rightToLeftWidth {
+        from {
+            clip-path: inset(0 0 0 100%);
+        }
+        to {
+            clip-path: inset(0 0 0 0);
+        }
+    }
+
+    @keyframes rightToLeftPosition {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-300%);
+        }
+    }
+
+    @keyframes blackToWhiteColor {
+        from {
+            color: #000;
+        }
+        to {
+            color: #fff;
+        }
+    }
+    @keyframes whiteToGreenColor {
+        from {
+            color: #fff;
+        }
+        to {
+            color: #38d430;
+        }
+    }
+}
+
+.root__container.root__container--cursorFollow {
+    background-color: #fff;
+    font-family: Montserrat, sans-serif;
+    font-weight: 900;
+    &,
+    * {
+        cursor: none;
+    }
+    ::selection {
+        color: #fff;
+        background: #2128bd;
+    }
+    .mainScreenContainer {
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+        .mainScreenContainer__container {
+            position: absolute;
+            top: 0;
+            height: 100vh;
+            width: 100vw;
+            > div {
+                position: absolute;
+                top: 0;
+                height: 100vh;
+                width: 100vw;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .mainScreenContainer__section--cursor {
+                position: fixed;
+                background: #38d430;
+                width: 20px;
+                height: 20px;
+                margin: -10px 0 0 -10px;
+                border-radius: 50%;
+                will-change: transform;
+                user-select: none;
+                pointer-events: none;
+                z-index: 10000;
+            }
+            .mainScreenContainer__section--shape {
+                overflow: hidden;
+                background: #38d430;
+                .mainScreenShape {
+                    position: absolute;
+                    top: 0;
+                    border-radius: 50%;
+                    transition: left, top;
+                    will-change: transform;
+                    transition: all ease-in-out;
+                }
+
+                // $shapes: (
+                //   #005ffe: 50vw,
+                //   #ffe5e3: 25vw,
+                //   #ffb300: 12vw,
+                // );
+                // @each $color, $size in $shapes {
+                //   .shape-#{index($shapes, ($color $size))} {
+                //     background: $color;
+                //     width: $size;
+                //     height: $size;
+                //     margin: (-$size/2) 0 0 (-$size/2);
+                //   }
+                // }
+                /* shape-1: #005ffe, 50vw */
+                .mainScreenContainer__section--shape .shape-1 {
+                    background: #005ffe;
+                    width: 50vw;
+                    height: 50vw;
+                    margin: calc(-25vw) 0 0 calc(-25vw);
+                }
+
+                /* shape-2: #ffe5e3, 25vw */
+                .mainScreenContainer__section--shape .shape-2 {
+                    background: #ffe5e3;
+                    width: 25vw;
+                    height: 25vw;
+                    margin: calc(-12.5vw) 0 0 calc(-12.5vw);
+                }
+
+                /* shape-3: #ffb300, 12vw */
+                .mainScreenContainer__section--shape .shape-3 {
+                    background: #ffb300;
+                    width: 12vw;
+                    height: 12vw;
+                    margin: calc(-6vw) 0 0 calc(-6vw);
+                }
+            }
+            .mainScreenContainer__section--content {
+                background: rgb(243, 255, 243);
+                background: linear-gradient(
+                    0deg,
+                    rgba(56, 212, 48, 1) 0%,
+                    rgba(0, 212, 255, 1) 100%
+                );
+                mix-blend-mode: screen;
+                .slogan {
+                    font-size: 4.5pc;
+                    font-weight: 900;
+                    opacity: 1;
+                    text-align: center;
+                    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff,
+                        0 0 42px #0fa, 0 0 82px #0fa, 0 0 92px #0fa,
+                        0 0 102px #0fa, 0 0 151px #0fa;
+                }
+                .mainVideo {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    z-index: -1;
+                }
+            }
+        }
+    }
+}
