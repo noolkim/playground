@@ -1,9 +1,12 @@
 name: Deploy to Oracle Cloud
 
 on:
-    push:
-        branches: [master]
-    workflow_dispatch: # GitHub 웹 사이트에서 수동으로 버튼 눌러 배포 가능
+    workflow_dispatch: # GitHub 웹사이트에서 'Run workflow' 버튼을 만들어줍니다.
+        inputs:
+            logLevel:
+                description: "Log level"
+                required: true
+                default: "warning"
 
 jobs:
     deploy:
