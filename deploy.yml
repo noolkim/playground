@@ -1,0 +1,39 @@
+name: Deploy to Oracle Cloud
+
+on:
+    push:
+        branches: [master]
+    workflow_dispatch: # GitHub 웹 사이트에서 수동으로 버튼 눌러 배포 가능
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: SSH Remote Commands
+              uses: appleboy/ssh-action@master
+              with:
+                  host: ${{ secrets.HOST }}
+                  username: ${{ secrets.USERNAME }}
+                  key: ${{ secrets.SSH_KEY }}
+                  # script 섹션 내의 #은 서버에서 주석으로 처리됩니다.
+                  script: |
+                      # 1. 배포 대상 폴더로 이동
+                      cd ~/playground
+
+                      # 2. 만약 해당 폴더가 git 저장소가 아니라면 초기화 진행
+                      if [ ! -d ".git" ]; then
+                        echo "Initializing git repository..."
+                        git init
+                        git remote add origin https://github.com/${{ github.repository }}.git
+                        git fetch
+                        git checkout -f master
+                      else
+                        # 3. 이미 git 저장소라면 최신 소스 pull
+                        echo "Pulling latest changes from GitHub..."
+                        git pull origin master
+                      fi
+
+                      # 4. (옵션) 배포 후 Nginx 재시작이 필요하다면 실행
+                      sudo systemctl restart nginx
+
+                      echo "Deployment successfully finished!"
