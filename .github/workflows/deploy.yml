@@ -33,6 +33,12 @@ jobs:
                         git pull origin master
                       fi
 
+                      cat > .env << EOF
+                      AIRTABLE_BASE_ID=${{ secrets.AIRTABLE_BASE_ID }}
+                      AIRTABLE_TABLE_NAME=${{ secrets.AIRTABLE_TABLE_NAME }}
+                      AIRTABLE_API_KEY=${{ secrets.AIRTABLE_API_KEY }}
+                      EOF
+
                       yarn install
                       yarn build
 
