@@ -33,7 +33,6 @@ jobs:
                         git pull origin master
                       fi
 
-                      # 환경 변수 파일 생성
                       cat > .env << EOF
                       AIRTABLE_BASE_ID=${{ secrets.AIRTABLE_BASE_ID }}
                       AIRTABLE_TABLE_NAME=${{ secrets.AIRTABLE_TABLE_NAME }}
