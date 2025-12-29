@@ -130,7 +130,7 @@ export default function Home() {
                         </h1>
                     </div>
                     <div className="title--wrap__right">
-                        <div>햄버거 버튼</div>
+                        <div>햄버거</div>
                     </div>
                 </div>
                 <div className="question--wrap">
